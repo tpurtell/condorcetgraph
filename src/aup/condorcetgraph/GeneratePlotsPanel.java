@@ -30,7 +30,7 @@ import javax.swing.filechooser.FileFilter;
 
  
 public class GeneratePlotsPanel extends JPanel implements ActionListener,ChangeListener, ItemListener {
-	MatrixGraph graph;
+	MatrixGraph graph = new MatrixGraph(1);
 	GraphView graph_view;
 	JSlider x_node;
 	JSlider y_node;
@@ -244,9 +244,7 @@ public class GeneratePlotsPanel extends JPanel implements ActionListener,ChangeL
 	}
 	public void setVisible(boolean arg0) {
 		if(arg0) {
-			graph_view.setGraph(graph);
-			x_node.setMaximum(graph.votes.length - 1);
-			y_node.setMaximum(graph.votes.length - 1);
+		    setGraph(graph);
 		}
 		super.setVisible(arg0);
 	}
@@ -287,5 +285,8 @@ public class GeneratePlotsPanel extends JPanel implements ActionListener,ChangeL
 	}
 	public void setGraph(MatrixGraph g) {
 		graph = g;
+        graph_view.setGraph(graph);
+        x_node.setMaximum(graph.votes.length - 1);
+        y_node.setMaximum(graph.votes.length - 1);
 	}
 }
